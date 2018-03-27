@@ -6,16 +6,18 @@ pipeline {
         }
     }
     stages {
-        stage('Package') {
+        stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn package'
             }
         }
         stage('Deliver') {
            steps {
-               sh 'mvn -pl webgoat-server spring-boot:run'
+               sh './scripts/deliver.sh'
                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+               sh './scripts/kill.sh'
            }
         }
+
     }
 }
