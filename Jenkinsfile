@@ -8,12 +8,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh '-B -DskipTests clean package'
             }
         }
         stage('Deliver') {
            steps {
                sh 'mvn -pl webgoat-server spring-boot:run'
+               input message: 'Finished using the web site? (Click "Proceed" to continue)'
            }
         }
     }
