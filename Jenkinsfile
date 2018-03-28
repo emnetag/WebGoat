@@ -1,27 +1,15 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
     stages {
-        stage('Build') {
+        stage('Health Check') {
+            agent {
+                docker {
+                    image 'maven:3-alpine'
+                    args '-v /root/.m2:/root/.m2'
+                }
+            }
             steps {
-                // sh 'echo -e "Current Dir: `pwd`"'
-                // sh 'echo "**** Current User ***"'
-                // sh 'echo -e "User: `whoami`  Home: `$HOME`"'
-                // sh 'echo "**** Running Install ***"'
-                sh 'mvn -X -DskipTests clean install'
+                sh 'mvn --version'
             }
         }
-        stage('Deliver') {
-           steps {
-               sh './scripts/deliver.sh'
-               input message: 'Finished using the web site? (Click "Proceed" to continue)'
-               sh './scripts/kill.sh'
-           }
-        }
-
     }
 }
