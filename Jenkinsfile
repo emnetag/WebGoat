@@ -8,11 +8,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo -e "Current Dir: `pwd`"'
-                sh 'echo "**** Current User ***"'
-                sh 'echo -e "User: `whoami`  Home: `$HOME`"'
-                sh 'echo "**** Running Install ***"'
-                sh 'mvn -DskipTests clean install'
+                // sh 'echo -e "Current Dir: `pwd`"'
+                // sh 'echo "**** Current User ***"'
+                // sh 'echo -e "User: `whoami`  Home: `$HOME`"'
+                // sh 'echo "**** Running Install ***"'
+                sh 'mvn -X -DskipTests clean install'
             }
         }
         stage('Deliver') {
