@@ -9,8 +9,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'mvn --version'
-                sh 'ls -al */**'
+                sh 'mvn -DskipTests clean install'
             }
         }
     }
