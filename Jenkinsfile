@@ -10,7 +10,7 @@ pipeline {
             }
             steps {
                 sh 'mvn --version'
-                sh 'ls -al .?/'
+                sh 'ls -al */**'
             }
         }
     }
