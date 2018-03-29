@@ -13,10 +13,9 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                // sh './scripts/run.sh'
-                // input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                // sh './scripts/stop.sh'
-                sh 'ls -al ./scripts'            
+                sh './scripts/run.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './scripts/stop.sh'
             }            
         }
     }
