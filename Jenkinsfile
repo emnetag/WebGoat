@@ -2,20 +2,18 @@ pipeline {
     agent { 
         docker {
             image 'maven:3-alpine'
-            args '-v $HOME/.m2:/root/.m2 -p 3030:3030 -u root:root'
+            args '-v /root/.m2:/root/.m2 -p 3030:3030 -u root:root'
         }
     }
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -DskipTests clean install'
+                sh 'mvn package'
             }
         }
-        stage('Deliver') {
+        stage('Validate') {
             steps {
-                sh './scripts/run.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './scripts/stop.sh'
+                sh 'ls -al ./target/'
             }            
         }
     }
