@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 echo 'The following command terminates the "mvn -pl webgoat-server spring-boot:run" process using its PID'
 echo '(written to ".pidfile"), all of which were conducted when "run.sh"'
