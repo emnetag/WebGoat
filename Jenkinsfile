@@ -14,10 +14,8 @@ pipeline {
         stage('Veracode Scan') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'VERACODE_CREDS', passwordVariable: 'veracode_password', usernameVariable: 'veracode_username')]) {
-                    sh ''''
-                    echo $veracode_password
-                    echo $veracode_username
-                    '''
+                    sh 'echo ID: $veracode_password'
+                    sh 'echo PASS: $veracode_username'
                 }
             }
         }
