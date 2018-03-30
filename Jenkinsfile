@@ -13,9 +13,25 @@ pipeline {
         }
         stage('Veracode Scan') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'VERACODE_CREDS', passwordVariable: 'veracode_password', usernameVariable: 'veracode_username')]) {
-                    sh 'echo ID: $veracode_password'
-                    sh 'echo PASS: $veracode_username'
+                withCredentials([usernamePassword(credentialsId: 'VERACODE_CREDS', passwordVariable: 'VERACODE_PASS', usernameVariable: 'VERACODE_ID')]) {
+                    veracode applicationName: 'WebGoat-8.0',
+                            canFailJob: true,
+                            createProfile: true,
+                            criticality: 'Medium',
+                            debug: true,
+                            fileNamePattern: '',
+                            replacementPattern: '',
+                            sandboxName: '',
+                            scanExcludesPattern: '', 
+                            scanIncludesPattern: '',
+                            scanName: '$buildnumber-$timestamp',
+                            teams: '',
+                            timeout: 60,
+                            uploadExcludesPattern: '**/.m2/**',
+                            uploadIncludesPattern: '**/webgoat-server/**/*.jar, **/webgoat-lessons/**/*.jar',
+                            useIDkey: true,
+                            vid: env.VERACODE_ID,
+                            vkey: env.VERACODE_PASS,
                 }
             }
         }
