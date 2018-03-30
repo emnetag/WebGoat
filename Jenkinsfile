@@ -8,12 +8,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn package'
+                sh 'mvn -DskipTests package'
             }
         }
         stage('Validate') {
             steps {
-                sh 'ls -al ./target/'
+                sh 'ls -al .'
             }            
         }
     }
