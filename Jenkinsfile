@@ -31,7 +31,7 @@ pipeline {
                             uploadIncludesPattern: '**/webgoat-server/**/*.jar, **/webgoat-lessons/**/*.jar',
                             useIDkey: true,
                             vid: env.VERACODE_ID,
-                            vkey: env.VERACODE_PASS,
+                            vkey: env.VERACODE_PASS
                 }
             }
         }
